@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --color-ink-950: #070b14;
+  --color-ink-900: #0c1322;
+  --color-ink-850: #101930;
+  --color-ink-800: #141f38;
+  --color-ink-700: #1e2b4a;
+  --color-ink-600: #2c3d63;
+  --color-gold-300: #f5d488;
+  --color-gold-400: #eec25e;
+  --color-gold-500: #e8b44a;
+  --color-gold-600: #c9962f;
+  --color-mint-400: #2dd4bf;
+  --color-mint-500: #14b8a6;
+  --color-rose-450: #fb7185;
+  --color-slate-mute: #8a94a8;
+  --animate-ticker: ticker 42s linear infinite;
+  --animate-pulse-dot: pulse-dot 1.6s ease-in-out infinite;
+  --animate-rise: rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.8); }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+html, body {
+  background: var(--color-ink-950);
+  color: #e8edf5;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display { font-family: var(--font-display); }
+.font-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+.terminal-grid {
+  background-image:
+    linear-gradient(rgba(232, 180, 74, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 180, 74, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 55%, transparent 100%);
+}
+
+.glass {
+  background: linear-gradient(180deg, rgba(20, 31, 56, 0.72), rgba(12, 19, 34, 0.86));
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(232, 180, 74, 0.12);
+}
+
+.card-hover { transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; }
+.card-hover:hover {
+  transform: translateY(-2px);
+  border-color: rgba(232, 180, 74, 0.35);
+  box-shadow: 0 12px 40px -12px rgba(232, 180, 74, 0.22);
+}
+
+.scroll-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+.scroll-thin::-webkit-scrollbar-thumb { background: #2c3d63; border-radius: 99px; }
+.scroll-thin::-webkit-scrollbar-track { background: transparent; }
+
+input:focus { outline: none; }
+::selection { background: rgba(232, 180, 74, 0.35); }
+
+.ticker-mask {
+  mask-image: linear-gradient(90deg, transparent, black 4%, black 96%, transparent);
+}
